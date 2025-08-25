@@ -216,6 +216,14 @@ st.markdown("""
         text-align: center;
         box-shadow: 0 4px 12px rgba(200, 100, 200, 0.15);
     }
+    .custom-label {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 200 !important;
+    font-size: 16px !important;
+    color: #2e2e2e !important;
+    margin-bottom: 12px !important;
+    display: block !important;
+}
     
 </style>
 """, unsafe_allow_html=True)
@@ -387,14 +395,29 @@ if page == "🏠 Dashboard":
         font-weight: 600 !important;
     }
     /* Custom labels styling */
-.custom-label {
+    /* Select boxes (dropdowns) */
+div[data-baseweb="select"] > div {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    border: 2px solid #e1c4ff !important;
+    border-radius: 12px !important;
+    color: #2e2e2e !important;
     font-family: 'Poppins', sans-serif !important;
     font-weight: 500 !important;
     font-size: 16px !important;
-    color: #2e2e2e !important;
-    margin-bottom: 8px !important;
-    display: block !important;
+    min-height: 56px !important;
+    padding: 16px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    line-height: 1.2 !important;
 }
+
+div[data-baseweb="select"]:hover > div {
+    border-color: #c7a7ff !important;
+    box-shadow: 0 4px 12px rgba(200, 100, 200, 0.2) !important;
+}
+
     </style>
     """, unsafe_allow_html=True)
     
@@ -505,12 +528,27 @@ elif page == "➕ Add Expense":
     st.markdown("*Track another way you spent money!*")
     st.markdown("""
 <style>
-/* Target the dropdown container */
+/* ===============================
+   UNIFIED FORM INPUT STYLING
+   All inputs will have the same height and appearance
+   =============================== */
+
+/* Select boxes (dropdowns) */
 div[data-baseweb="select"] > div {
-    background-color: rgba(255, 255, 255, 0.9) !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
     border: 2px solid #e1c4ff !important;
     border-radius: 12px !important;
     color: #2e2e2e !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    min-height: 56px !important;
+    padding: 16px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    line-height: 1.2 !important;
 }
 
 div[data-baseweb="select"]:hover > div {
@@ -518,26 +556,156 @@ div[data-baseweb="select"]:hover > div {
     box-shadow: 0 4px 12px rgba(200, 100, 200, 0.2) !important;
 }
 
-/* Target the dropdown popup menu */
+/* Text and Number inputs - Match select box size */
+.stNumberInput > div > div > input, 
+.stTextInput > div > div > input {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 2px solid #e1c4ff !important;
+    border-radius: 12px !important;
+    color: #2e2e2e !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    min-height: 56px !important; /* Same as select boxes */
+    padding: 16px !important; /* Same as select boxes */
+    width: 100% !important;
+    box-sizing: border-box !important;
+    line-height: 1.2 !important;
+}
+
+.stNumberInput > div > div > input:focus,
+.stTextInput > div > div > input:focus {
+    border-color: #ff9fcf !important;
+    box-shadow: 0 0 0 3px rgba(255, 159, 207, 0.2) !important;
+    outline: none !important;
+}
+
+.stNumberInput > div > div > input:hover,
+.stTextInput > div > div > input:hover {
+    border-color: #c7a7ff !important;
+}
+
+/* Date input - Match other inputs */
+.stDateInput > div > div > input {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 2px solid #e1c4ff !important;
+    border-radius: 12px !important;
+    color: #2e2e2e !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    min-height: 56px !important; /* Same as others */
+    padding: 16px !important; /* Same as others */
+    width: 100% !important;
+    box-sizing: border-box !important;
+    line-height: 1.2 !important;
+}
+
+.stDateInput > div > div > input:focus {
+    border-color: #ff9fcf !important;
+    box-shadow: 0 0 0 3px rgba(255, 159, 207, 0.2) !important;
+    outline: none !important;
+}
+
+.stDateInput > div > div > input:hover {
+    border-color: #c7a7ff !important;
+}
+
+/* Multi-select inputs */
+.stMultiSelect > div > div {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 2px solid #e1c4ff !important;
+    border-radius: 12px !important;
+    color: #2e2e2e !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    min-height: 56px !important; /* Same as others */
+    padding: 16px !important; /* Same as others */
+    width: 100% !important;
+    box-sizing: border-box !important;
+    line-height: 1.2 !important;
+}
+
+.stMultiSelect > div > div:focus {
+    border-color: #ff9fcf !important;
+    box-shadow: 0 0 0 3px rgba(255, 159, 207, 0.2) !important;
+}
+
+.stMultiSelect > div > div:hover {
+    border-color: #c7a7ff !important;
+}
+
+/* Ensure the selected text is properly positioned in select boxes */
+div[data-baseweb="select"] > div > div {
+    color: #2e2e2e !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    line-height: 1.2 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    height: auto !important;
+    overflow: visible !important;
+}
+
+/* Fix for the selected value span */
+div[data-baseweb="select"] > div span {
+    color: #2e2e2e !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+}
+
+/* Ensure dropdown arrow doesn't interfere */
+div[data-baseweb="select"] > div > div:last-child {
+    flex-shrink: 0 !important;
+    margin-left: 8px !important;
+}
+
+/* ===============================
+   DROPDOWN MENU STYLING
+   =============================== */
+
+/* Fix dropdown menu positioning and sizing */
+div[data-baseweb="popover"] {
+    z-index: 1000 !important;
+}
+
 div[data-baseweb="popover"] > div {
     background-color: #ffffff !important;
     border: 2px solid #e1c4ff !important;
     border-radius: 12px !important;
-    padding: 5px !important;
+    padding: 8px !important;
     box-shadow: 0 4px 12px rgba(200, 100, 200, 0.2) !important;
+    min-width: 100% !important;
 }
 
-/* Target the dropdown options */
+/* Dropdown options styling */
 div[data-baseweb="popover"] li {
     background-color: #ffffff !important;
     color: #2e2e2e !important;
     border-radius: 8px !important;
-    padding: 10px !important;
-    margin: 3px 0 !important;
-    transition: background 0.2s ease-in-out;
+    padding: 12px 16px !important;
+    margin: 4px 0 !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    line-height: 1.2 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
 }
 
-/* Hover effect for dropdown options */
 div[data-baseweb="popover"] li:hover {
     background-color: #f3e8ff !important;
     color: #5b21b6 !important;
@@ -545,7 +713,7 @@ div[data-baseweb="popover"] li:hover {
 }
 
 /* ===============================
-   Per-category colors for dropdown options
+   CATEGORY COLORS FOR DROPDOWN OPTIONS
    =============================== */
 
 /* Food & Dining */
@@ -602,50 +770,42 @@ div[data-baseweb="popover"] li:nth-child(9) {
     color: #424242 !important;
 }
 
-/* Style number and text inputs */
-.stNumberInput > div > div > input, 
-.stTextInput > div > div > input {
-    background: rgba(255, 255, 255, 0.9) !important;
+/* ===============================
+   ADDITIONAL STREAMLIT WRAPPER FIXES
+   =============================== */
+
+/* Additional fix for Streamlit's selectbox wrapper */
+.stSelectbox > div > div {
+    background: rgba(255, 255, 255, 0.95) !important;
     border: 2px solid #e1c4ff !important;
     border-radius: 12px !important;
+    min-height: 56px !important; /* Match other inputs */
+}
+
+.stSelectbox > div > div > div {
+    padding: 16px !important; /* Match other inputs */
     color: #2e2e2e !important;
     font-family: 'Poppins', sans-serif !important;
     font-weight: 500 !important;
     font-size: 16px !important;
+    line-height: 1.2 !important;
+    display: flex !important;
+    align-items: center !important;
 }
 
-.stNumberInput > div > div > input:focus,
-.stTextInput > div > div > input:focus {
-    border-color: #ff9fcf !important;
-    box-shadow: 0 0 0 3px rgba(255, 159, 207, 0.2) !important;
-}
-
-/* Style date input */
-.stDateInput > div > div > input {
-    background: rgba(255, 255, 255, 0.9) !important;
-    border: 2px solid #e1c4ff !important;
-    border-radius: 12px !important;
-    color: #2e2e2e !important;
-    font-family: 'Poppins', sans-serif !important;
-    font-weight: 500 !important;
-    font-size: 16px !important;
-}
+/* ===============================
+   LABEL STYLING
+   =============================== */
 
 /* Style input labels */
-.stNumberInput label, .stTextInput label, .stDateInput label, .stSelectbox label {
+.stNumberInput label, .stTextInput label, .stDateInput label, .stSelectbox label, .stMultiSelect label {
     font-family: 'Poppins', sans-serif !important;
     font-weight: 500 !important;
     font-size: 16px !important;
     color: #2e2e2e !important;
+    margin-bottom: 8px !important;
 }
 
-/* Style placeholder text */
-.stTextInput > div > div > input::placeholder {
-    font-family: 'Poppins', sans-serif !important;
-    font-weight: 400 !important;
-    font-size: 14px !important;
-    color: #888 !important;
-}
 /* Custom labels styling */
 .custom-label {
     font-family: 'Poppins', sans-serif !important;
@@ -654,6 +814,30 @@ div[data-baseweb="popover"] li:nth-child(9) {
     color: #2e2e2e !important;
     margin-bottom: 8px !important;
     display: block !important;
+}
+
+/* ===============================
+   PLACEHOLDER TEXT STYLING
+   =============================== */
+
+/* Style placeholder text */
+.stTextInput > div > div > input::placeholder {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    color: #888 !important;
+}
+
+/* Ensure text visibility in all elements */
+.stNumberInput > div > div > input::placeholder,
+.stTextInput > div > div > input::placeholder,
+.stDateInput > div > div > input::placeholder,
+div[data-baseweb="select"] > div span,
+.stMultiSelect > div > div span {
+    color: #2e2e2e !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 16px !important;
 }
 </style>
 """, unsafe_allow_html=True)
