@@ -386,6 +386,15 @@ if page == "🏠 Dashboard":
         color: #5b21b6 !important;
         font-weight: 600 !important;
     }
+    /* Custom labels styling */
+.custom-label {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    color: #2e2e2e !important;
+    margin-bottom: 8px !important;
+    display: block !important;
+}
     </style>
     """, unsafe_allow_html=True)
     
@@ -636,6 +645,15 @@ div[data-baseweb="popover"] li:nth-child(9) {
     font-weight: 400 !important;
     font-size: 14px !important;
     color: #888 !important;
+}
+/* Custom labels styling */
+.custom-label {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    color: #2e2e2e !important;
+    margin-bottom: 8px !important;
+    display: block !important;
 }
 </style>
 """, unsafe_allow_html=True)
